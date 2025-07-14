@@ -1,8 +1,10 @@
 ﻿using Simple_Inventory_Management_System.logic;
+using Simple_Inventory_Management_System.models;
 using Simple_Inventory_Management_System.models.enums;
 
 
 Choice choice = Choice.NONE;
+var ops = new InventoryOperations();
 
 do
 {
@@ -13,7 +15,7 @@ do
         switch (choice)
         {
             case Choice.ADD:
-                // do add operation
+                AddChoice();
                 break;
             case Choice.VIEWALL:
                 // do view all
@@ -33,7 +35,11 @@ do
     }
     catch (FormatException)
     {
-        Console.WriteLine("Invalid Choice !");
+        Console.WriteLine("Invalid data must be number !");
+    }
+    catch (ArgumentNullException)
+    {
+        Console.WriteLine("No data provided");
     }
 } while (choice != Choice.EXIT);
 
@@ -51,4 +57,22 @@ void PrintWelcome()
                       5. Search Product
                       6. Exit
                       """);
+}
+
+Product GetProductInfo()
+{
+    Console.Write("Name: ");
+    string? name = Console.ReadLine();
+    Console.Write("Price: ");
+    double price = Double.Parse(Console.ReadLine());
+    Console.Write("Quantity: ");
+    int quantity = Int32.Parse(Console.ReadLine());
+
+    return new Product(name, price, quantity);
+}
+
+void AddChoice()
+{
+    var productInfo = GetProductInfo();
+    ops.AddProduct(productInfo.Name, productInfo.Price, productInfo.Quantity);
 }
