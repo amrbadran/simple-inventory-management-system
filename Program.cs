@@ -24,7 +24,7 @@ do
                 EditChoice();
                 break;
             case Choice.DELETE:
-                // do delete
+                DeleteChoice();
                 break;
             case Choice.SEARCH:
                 // do search
@@ -99,4 +99,14 @@ void EditChoice()
     Console.WriteLine("==== Edit Product ====");
     var productInfo = GetProductInfo();
     ops.EditProduct(indexOfProduct, productInfo.Name, productInfo.Price, productInfo.Quantity);
+}
+
+void DeleteChoice()
+{
+    Console.Write("Name (To Delete): ");
+    string? name = Console.ReadLine();
+    var indexOfProduct = ops.ProductExists(name);
+    if (indexOfProduct < 0) throw new IndexOutOfRangeException();
+    
+    ops.DeleteProduct(indexOfProduct);
 }
