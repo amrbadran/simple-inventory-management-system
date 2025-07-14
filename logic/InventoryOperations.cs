@@ -27,4 +27,22 @@ public class InventoryOperations
 
         return productsMessages;
     }
+
+    public void EditProduct(int indexProduct, string name, double price, int quantity)
+    {
+        inventory.Products[indexProduct].Name = name;
+        inventory.Products[indexProduct].Price = price;
+        inventory.Products[indexProduct].Quantity = quantity;
+    }
+
+    public int ProductExists(string name)
+    {
+        for (int i = 0; i < inventory.Products.Count; ++i)
+        {
+            if (inventory.Products[i].Name == name)
+                return i;
+        }
+
+        return -1;
+    }
 }
