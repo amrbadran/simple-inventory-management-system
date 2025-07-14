@@ -21,7 +21,7 @@ do
                 ViewAllChoice();
                 break;
             case Choice.EDIT:
-                // do edit
+                EditChoice();
                 break;
             case Choice.DELETE:
                 // do delete
@@ -41,13 +41,17 @@ do
     {
         Console.WriteLine("No data provided");
     }
+    catch (IndexOutOfRangeException)
+    {
+        Console.WriteLine("No Product Found");
+    }
 } while (choice != Choice.EXIT);
 
 
 void PrintWelcome()
 {
     Console.WriteLine("""
-                      
+
                       ** Welcome To Simple Inventory Management System **
                       ===================================================
                       1. Add Product
@@ -84,4 +88,15 @@ void ViewAllChoice()
     {
         Console.WriteLine(p.ToString());
     }
+}
+
+void EditChoice()
+{
+    Console.Write("Name (To Edit): ");
+    string? name = Console.ReadLine();
+    var indexOfProduct = ops.ProductExists(name);
+    if (indexOfProduct < 0) throw new IndexOutOfRangeException();
+    Console.WriteLine("==== Edit Product ====");
+    var productInfo = GetProductInfo();
+    ops.EditProduct(indexOfProduct, productInfo.Name, productInfo.Price, productInfo.Quantity);
 }

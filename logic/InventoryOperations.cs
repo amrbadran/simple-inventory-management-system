@@ -30,9 +30,12 @@ public class InventoryOperations
 
     public void EditProduct(int indexProduct, string name, double price, int quantity)
     {
-        inventory.Products[indexProduct].Name = name;
-        inventory.Products[indexProduct].Price = price;
-        inventory.Products[indexProduct].Quantity = quantity;
+        if (indexProduct >= 0)
+        {
+            inventory.Products[indexProduct].Name = name;
+            inventory.Products[indexProduct].Price = price;
+            inventory.Products[indexProduct].Quantity = quantity;
+        }
     }
 
     public void DeleteProduct(int indexProduct)
