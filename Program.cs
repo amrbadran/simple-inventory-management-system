@@ -1,27 +1,54 @@
 ﻿using Simple_Inventory_Management_System.logic;
+using Simple_Inventory_Management_System.models.enums;
 
-// Sample Test for Editing, Deleting and Viewing Products...
 
-void PrintProducts(InventoryOperations ops)
+Choice choice = Choice.NONE;
+
+do
 {
-    var list = ops.ViewProducts();
-
-    foreach (string message in list)
+    PrintWelcome();
+    try
     {
-        Console.WriteLine(message);
+        choice = (Choice)Int32.Parse(Console.ReadLine());
+        switch (choice)
+        {
+            case Choice.ADD:
+                // do add operation
+                break;
+            case Choice.VIEWALL:
+                // do view all
+                break;
+            case Choice.EDIT:
+                // do edit
+                break;
+            case Choice.DELETE:
+                // do delete
+                break;
+            case Choice.SEARCH:
+                // do search
+                break;
+            default:
+                break;
+        }
     }
+    catch (FormatException)
+    {
+        Console.WriteLine("Invalid Choice !");
+    }
+} while (choice != Choice.EXIT);
+
+
+void PrintWelcome()
+{
+    Console.WriteLine("""
+
+                      ** Welcome To Simple Inventory Management System **
+                      ===================================================
+                      1. Add Product
+                      2. View All Products
+                      3. Edit Product
+                      4. Delete Product
+                      5. Search Product
+                      6. Exit
+                      """);
 }
-
-Console.WriteLine("Hello Simple Inventory Management System");
-
-var ops = new InventoryOperations();
-
-ops.AddProduct("Milk", 15.5, 3);
-ops.AddProduct("Rice", 20, 5);
-
-PrintProducts(ops);
-
-ops.EditProduct(ops.ProductExists("Milk"), "Milk1", 15.5, 3);
-ops.DeleteProduct(ops.ProductExists("Rice"));
-
-PrintProducts(ops);
