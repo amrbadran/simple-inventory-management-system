@@ -1,8 +1,9 @@
 using Simple_Inventory_Management_System.models;
+using Simple_Inventory_Management_System.models.interfaces;
 
 namespace Simple_Inventory_Management_System.logic;
 
-public class InventoryOperations
+public class InventoryOperations: IInventoryCRUD
 {
     private Inventory inventory;
 
