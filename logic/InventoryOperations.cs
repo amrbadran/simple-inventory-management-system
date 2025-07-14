@@ -16,4 +16,15 @@ public class InventoryOperations
         Product p = new Product(name, price, quantity);
         inventory.Products.Add(p);
     }
+
+    public List<string> ViewProducts()
+    {
+        var productsMessages = new List<string>();
+        foreach (Product p in inventory.Products)
+        {
+            productsMessages.Add(p.ToString());
+        }
+
+        return productsMessages;
+    }
 }
