@@ -29,7 +29,10 @@ do
             case Choice.SEARCH:
                 SearchChoice();
                 break;
+            case Choice.EXIT:
+                break;
             default:
+                Console.WriteLine("No choice with this number");
                 break;
         }
     }
@@ -90,12 +93,19 @@ void ViewAllChoice()
     }
 }
 
-void EditChoice()
+int GetIndexOfProduct(string operation)
 {
-    Console.Write("Name (To Edit): ");
+    Console.Write($"Name (To {operation}): ");
     string? name = Console.ReadLine();
     var indexOfProduct = ops.ProductExists(name);
     if (indexOfProduct < 0) throw new IndexOutOfRangeException();
+
+    return indexOfProduct;
+}
+
+void EditChoice()
+{
+    var indexOfProduct = GetIndexOfProduct("Edit");
     Console.WriteLine("==== Edit Product ====");
     var productInfo = GetProductInfo();
     ops.EditProduct(indexOfProduct, productInfo.Name, productInfo.Price, productInfo.Quantity);
@@ -103,20 +113,12 @@ void EditChoice()
 
 void DeleteChoice()
 {
-    Console.Write("Name (To Delete): ");
-    string? name = Console.ReadLine();
-    var indexOfProduct = ops.ProductExists(name);
-    if (indexOfProduct < 0) throw new IndexOutOfRangeException();
-
+    var indexOfProduct = GetIndexOfProduct("Delete");
     ops.DeleteProduct(indexOfProduct);
 }
 
 void SearchChoice()
 {
-    Console.Write("Name (To Search): ");
-    string? name = Console.ReadLine();
-    var indexOfProduct = ops.ProductExists(name);
-    if (indexOfProduct < 0) throw new IndexOutOfRangeException();
-
+    var indexOfProduct = GetIndexOfProduct("Search");
     Console.WriteLine(ops.SearchProduct(indexOfProduct));
 }
