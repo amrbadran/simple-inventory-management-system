@@ -1,19 +1,27 @@
 ﻿using Simple_Inventory_Management_System.logic;
 
-// Sample Test for Editing and Viewing Products...
+// Sample Test for Editing, Deleting and Viewing Products...
+
+void PrintProducts(InventoryOperations ops)
+{
+    var list = ops.ViewProducts();
+
+    foreach (string message in list)
+    {
+        Console.WriteLine(message);
+    }
+}
 
 Console.WriteLine("Hello Simple Inventory Management System");
 
 var ops = new InventoryOperations();
 
-ops.AddProduct("Milk",15.5,3);
-ops.AddProduct("Rice",20,5);
+ops.AddProduct("Milk", 15.5, 3);
+ops.AddProduct("Rice", 20, 5);
 
-var list = ops.ViewProducts();
+PrintProducts(ops);
 
-foreach (string message in list)
-{
-    Console.WriteLine(message);
-}
+ops.EditProduct(ops.ProductExists("Milk"), "Milk1", 15.5, 3);
+ops.DeleteProduct(ops.ProductExists("Rice"));
 
-ops.EditProduct(ops.ProductExists("Milk"),"Milk1",15.5,3);
+PrintProducts(ops);

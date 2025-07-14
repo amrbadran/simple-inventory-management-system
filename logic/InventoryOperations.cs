@@ -35,6 +35,14 @@ public class InventoryOperations
         inventory.Products[indexProduct].Quantity = quantity;
     }
 
+    public void DeleteProduct(int indexProduct)
+    {
+        if (indexProduct > 0)
+        {
+            inventory.Products.RemoveAt(indexProduct);
+        }
+    }
+
     public int ProductExists(string name)
     {
         for (int i = 0; i < inventory.Products.Count; ++i)
