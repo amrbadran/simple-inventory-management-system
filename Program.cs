@@ -18,7 +18,7 @@ do
                 AddChoice();
                 break;
             case Choice.VIEWALL:
-                // do view all
+                ViewAllChoice();
                 break;
             case Choice.EDIT:
                 // do edit
@@ -47,7 +47,7 @@ do
 void PrintWelcome()
 {
     Console.WriteLine("""
-
+                      
                       ** Welcome To Simple Inventory Management System **
                       ===================================================
                       1. Add Product
@@ -75,4 +75,13 @@ void AddChoice()
 {
     var productInfo = GetProductInfo();
     ops.AddProduct(productInfo.Name, productInfo.Price, productInfo.Quantity);
+}
+
+void ViewAllChoice()
+{
+    var products = ops.ViewProducts();
+    foreach (string p in products)
+    {
+        Console.WriteLine(p.ToString());
+    }
 }
