@@ -1,6 +1,6 @@
 ﻿using Simple_Inventory_Management_System.logic;
 
-// Sample Test for Editing, Deleting and Viewing Products...
+// Sample Test for Editing, Deleting, Searching and Viewing Products...
 
 void PrintProducts(InventoryOperations ops)
 {
@@ -25,3 +25,5 @@ ops.EditProduct(ops.ProductExists("Milk"), "Milk1", 15.5, 3);
 ops.DeleteProduct(ops.ProductExists("Rice"));
 
 PrintProducts(ops);
+
+Console.WriteLine(ops.SearchProduct(ops.ProductExists("Milk1")));
