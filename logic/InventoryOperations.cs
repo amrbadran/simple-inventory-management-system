@@ -37,10 +37,20 @@ public class InventoryOperations
 
     public void DeleteProduct(int indexProduct)
     {
-        if (indexProduct > 0)
+        if (indexProduct >= 0)
         {
             inventory.Products.RemoveAt(indexProduct);
         }
+    }
+
+    public String SearchProduct(int indexProduct)
+    {
+        if (indexProduct >= 0)
+        {
+            return inventory.Products[indexProduct].ToString();
+        }
+
+        return "No Product Found";
     }
 
     public int ProductExists(string name)
