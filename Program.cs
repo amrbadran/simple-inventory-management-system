@@ -27,7 +27,7 @@ do
                 DeleteChoice();
                 break;
             case Choice.SEARCH:
-                // do search
+                SearchChoice();
                 break;
             default:
                 break;
@@ -107,6 +107,16 @@ void DeleteChoice()
     string? name = Console.ReadLine();
     var indexOfProduct = ops.ProductExists(name);
     if (indexOfProduct < 0) throw new IndexOutOfRangeException();
-    
+
     ops.DeleteProduct(indexOfProduct);
+}
+
+void SearchChoice()
+{
+    Console.Write("Name (To Search): ");
+    string? name = Console.ReadLine();
+    var indexOfProduct = ops.ProductExists(name);
+    if (indexOfProduct < 0) throw new IndexOutOfRangeException();
+
+    Console.WriteLine(ops.SearchProduct(indexOfProduct));
 }
